@@ -96,6 +96,7 @@ a{
     color: var(--text-color-light);
     font-weight: 500;
     cursor: pointer;
+    transition: all 0.2s;
 }
 .btn:hover{
     background: var(--text-color-light);
@@ -107,11 +108,27 @@ a{
 .politic-linc:hover{
     text-decoration: underline;
 }
+.visually-hidden{
+    position: absolute;
+    left: -1000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
 /*nav*/
+.header{
+    position: absolute;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 32px 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .header__container{
     display: flex;
     align-items: center;
-    padding: 32px 0;
     gap: 30px;
 }
 .navigation{
@@ -129,6 +146,7 @@ a{
 }
 .navigation__menu-linck{
     line-height: 1.2;
+    transition: all 0.2s;
 }
 .navigation__menu-linck:hover{
     color: var(--brend-color);
@@ -141,15 +159,21 @@ a{
 }
 .navigation__icon{
     fill: var(--text-color-dark);
+    transition: all 0.2s;
 }
 .navigation__icon:hover{
     fill: var(--brend-color);
-}
+} 
 
 /*section offer*/
+.main{
+    background-image: url('../image/background.png');
+    background-repeat: no-repeat;
+    background-position: center 1270px;
+}
 .offer{
     padding: 124px 0 ;
-    background-image:linear-gradient(89.38deg, #FFFFFF 30.62%, rgba(255, 255, 255, 0.850898) 41.31%, rgba(255, 255, 255, 0.193204) 58.65%, rgba(255, 255, 255, 0) 72.78%), url('../image/offer-bg.jpg');
+    background-image: url('../image/bg-offer.jpg');
     background-repeat: no-repeat;
     background-position: top right;
     
@@ -179,14 +203,43 @@ a{
 .about{
     padding-bottom: 128px;
 }
+.star{
+    position: relative;
+}
 .star__icon1{
     fill: #011F4A;
+    position: absolute;
+    top: 360px;
+    right: 302px;
+    animation:star 3s infinite linear;
 }
 .star__icon2{
     fill: #2B7FFF;
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    animation:star 2s infinite linear;
+    animation-delay: 2s;
 }
 .star__icon3{
     fill: #747272;
+    position: absolute;
+    top: 270px;
+    right: 30px;
+    animation:star 1s infinite linear;
+    animation-delay: 4s;
+}
+
+@keyframes star{
+    0%{
+        transform: rotate(0) scale(1);
+        }
+    50%{
+        transform: rotate(180deg) scale(2);
+    }
+    100%{
+        transform: rotate(360deg) scale(1);
+    }
 }
 .about__box{
     display: flex;
@@ -231,6 +284,7 @@ a{
 }
 
 /*section why*/
+
 .why{
     display: flex;
     justify-content: center;
@@ -280,6 +334,9 @@ a{
     fill: var(--text-color-dark);
 
 }
+.procedures__arrow.next{
+    transform: rotate(180deg);
+}
 .procedures__arrow:hover{
     background-color: var(--text-color-dark);
     fill: var(--text-color-light);
@@ -299,8 +356,16 @@ a{
     flex-direction: column;
     justify-content: end;
     flex-basis: calc((100%/3)-16px);
+    position: relative;
+    overflow: hidden;
+    
 }
-
+.procedures__img{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
 /*section contacts*/
 .contacts-section{
     padding-bottom: 94px;
@@ -342,6 +407,12 @@ a{
     background: var(--text-color-dark) url('../image/footer-background.png');
     background-repeat: no-repeat;
     background-position: top center;
+    position: relative;
+}
+.footer__img{
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 .footer__block{
     display: flex;
@@ -378,6 +449,7 @@ a{
     margin-bottom: 16px;
     display: block;
     font-style: normal;
+    transition: all 0.2s;
 }
 .footer__contact a:hover{
     color: var(--brend-color);
@@ -389,9 +461,11 @@ a{
 }
 .footer__icon{
     fill: var(--text-color-light);
+    transition: all 0.2s;
 }
 .footer__icon:hover{
     fill: var(--brend-color);
+    
 }
 .footer__copyright{
     color: var(--poliyc-color);
@@ -405,4 +479,105 @@ a{
 .footer__politic-linc{
     margin-bottom: 16px;
     display: block;
+    text-decoration: underline;
+}
+
+.footer__politic-linc:hover{
+    color: var(--text-color-light);
+}
+/* modal */
+.backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(1, 31, 74, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition:  opacity 0.2s, visibility 0.2s;
+    padding: 30px;
+}
+.is-hidden{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.modal{
+    width: 100%;
+    max-width: 723px;
+    height: 100%;
+    max-height: 681px;
+    background: var(--text-color-dark) url('../image/footer-background.png');
+    padding: 42px 206px;
+    position: relative;
+    border-radius: 48px;
+    overflow: auto;
+    color: var(--text-color-light);
+}
+
+.modal-btn-close{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.modal__title{
+    font-size: 64px;
+    line-height: 74px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.modal__text{
+    text-align: center;
+    color: var(--text-color-light);
+    margin-bottom: 32px;
+    padding: 0 30px;
+}
+
+.form__wrap{
+    margin-bottom: 24px;
+}
+
+.input{
+    padding: 18px 32px;
+    border-radius: 100px;
+    border: 2px solid var(--poliyc-color);
+    background: none;
+    width: 100%;
+    font-size: 13px;
+    line-height: 15px;
+    color: var(--text-color-light);
+}
+
+.input:focus{
+    outline: none;
+    background-color: var(--poliyc-color);
+}
+.input:focus::placeholder{
+    color: var(--text-color-light);
+    font-size: 13px;
+    line-height: 15px;
+}
+.modal__btn{
+    width: 100%;
+    padding: 16px 0;
+    margin-bottom: 8px;
+}
+.modal__politic, .modal__politic a{
+    color: var(--poliyc-color);
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.modal__politic a{
+    display: block;
+    text-decoration: underline;
+}
+.modal__politic a:hover{
+   color: var(--text-color-light);
 }
